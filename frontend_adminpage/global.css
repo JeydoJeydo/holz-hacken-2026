@@ -1,0 +1,94 @@
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--margin: 10px;
+
+	--radius: 10px;
+
+	--small: 0.8rem;
+	--regular: 1rem;
+	--big: 1.5rem;
+
+	--white: #ffffff;
+	--black: #000000;
+	--red: #e34949;
+}
+
+p,
+a,
+button,
+input {
+	font-size: var(--regular);
+}
+
+#header {
+	display: flex;
+	justify-content: space-between;
+	padding: var(--margin);
+	align-items: center;
+	margin-bottom: calc(var(--margin) * 2);
+}
+#admin-page-hint {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: var(--small);
+	color: white;
+	background-color: black;
+	border-radius: 100px;
+	padding: 5px;
+}
+
+#matrix-container,
+#templates-container {
+	max-width: 500px;
+	width: calc(100% - 2 * var(--margin));
+	margin: 0 auto;
+}
+#matrix-header {
+	flex-grow: 1;
+	display: flex;
+	margin-bottom: var(--margin);
+}
+#matrix-header > input {
+	flex-grow: 1;
+	padding: var(--margin);
+	min-width: 5rem;
+}
+
+#matrix {
+	width: 100%;
+	background-color: black;
+	display: grid;
+	grid-column-gap: 2px;
+	grid-row-gap: 2px;
+	border: 2px solid black;
+	aspect-ratio: 1;
+}
+.matrix-entry.clone {
+	display: none;
+}
+.matrix-entry {
+	background-color: white;
+}
+
+#snackbar {
+	position: fixed;
+	bottom: var(--margin);
+	background-color: white;
+	width: calc(100% - 2 * var(--margin));
+	max-width: 400px;
+	transition: all 0.3s;
+	left: calc(50% - var(--margin));
+	border-radius: var(--radius);
+	transform: translate(-50%, var(--margin));
+	padding: var(--margin);
+	pointer-events: none;
+	opacity: 0;
+	margin: var(--margin);
+
+	-webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.2);
+}

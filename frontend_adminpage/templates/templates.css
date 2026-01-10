@@ -1,0 +1,24 @@
+.template {
+	display: flex;
+	align-items: center;
+	gap: var(--margin);
+}
+.template.clone {
+	display: none;
+}
+.template-view {
+	display: grid;
+	width: calc(var(--margin) * 4);
+	height: calc(var(--margin) * 4);
+	grid-column-gap: 1px;
+	grid-row-gap: 1px;
+	border: 1px solid black;
+	background-color: var(--black);
+}
+
+.template-view > .checked {
+	background-color: var(--white);
+}
+p.template-name {
+	flex-grow: 1;
+}

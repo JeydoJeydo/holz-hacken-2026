@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link href="./global.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div id="header">
+			<p id="admin-page-hint">admin page</p>
+			<a href="/templates/index.html">View  all Templates</a>
+		</div>
+		<div id="matrix-container">
+			<div id="matrix-header">
+				<input id="template_namer" type="text" placeholder="Templatename" />
+				<button onclick="save()">Speichern</button>
+			</div>
+			<div id="matrix">
+				<input type="checkbox" index="0" class="matrix-entry clone" onchange="changeBox(this)"></input>
+			</div>
+		</div>
+		<div id="snackbar">
+			<p id="snackbar-text">test</p>
+		</div>
+	</body>
+	<script src="./main.js"></script>
+	<script src="./index.js"></script>
+</html>
