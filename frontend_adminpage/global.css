@@ -10,11 +10,12 @@
 
 	--small: 0.8rem;
 	--regular: 1rem;
-	--big: 1.5rem;
+	--header: 1.5rem;
 
 	--white: #ffffff;
 	--black: #000000;
 	--red: #e34949;
+	--grey: #8a8a8a;
 }
 
 p,
@@ -39,6 +40,9 @@ input {
 	background-color: black;
 	border-radius: 100px;
 	padding: 5px;
+}
+#header > a {
+	color: var(--black);
 }
 
 #matrix-container,

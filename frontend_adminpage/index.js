@@ -30,7 +30,8 @@ async function save() {
 	console.log("speichern ...", name);
 	let container = document.querySelector("#matrix-container");
 	let slots = container.querySelectorAll(".matrix-entry");
-	let buildMatrix = { size: MATRIX_SIZE, name: name, slots: [], slotNumber: undefined };
+	let buildMatrix = { id: undefined, size: MATRIX_SIZE, name: name, slots: [], slotNumber: undefined };
+	buildMatrix.id = Math.random().toString(16).slice(2);
 	let buildSlotNumber = "";
 	slots.forEach((el, i) => {
 		if (el.classList.contains("clone")) {

@@ -1,7 +1,14 @@
+#all-templates {
+	font-size: var(--header);
+}
+
 .template {
 	display: flex;
 	align-items: center;
 	gap: var(--margin);
+	border-top: 1px solid var(--grey);
+	margin-top: var(--margin);
+	padding-top: var(--margin);
 }
 .template.clone {
 	display: none;
@@ -21,4 +28,13 @@
 }
 p.template-name {
 	flex-grow: 1;
+}
+
+.template-interacter > * {
+	margin: 0;
+	background-color: transparent;
+	border: none;
+	color: var(--black);
+	text-decoration: underline;
+	cursor: pointer;
 }

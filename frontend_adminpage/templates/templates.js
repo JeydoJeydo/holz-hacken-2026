@@ -27,7 +27,15 @@ function buildTemplatesView(data) {
 }
 let testData = [
 	{
+		id: "3c957ed6a5641",
 		name: "Testtemplate",
+		size: 3,
+		slotNumber: 100010001,
+		slots: [true, false, false, false, true, false, false, false, true],
+	},
+	{
+		id: "7835f122c803f8",
+		name: "Anoter Testtemplate",
 		size: 3,
 		slotNumber: 100010001,
 		slots: [true, false, false, false, true, false, false, false, true],
