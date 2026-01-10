@@ -10,7 +10,7 @@ function buildTemplatesView(data) {
 		let elem = data[i];
 		clone.classList.remove("clone");
 		clone.querySelector(".template-name").innerText = elem.name;
-		clone.querySelector(".template-edit").href = `/?slotNumber=${elem.slotNumber}`;
+		clone.querySelector(".template-edit").href = `/?id=${elem.id}`;
 		console.log(i, elem);
 		let template = clone.querySelector(".template-view");
 		template.style.gridTemplateColumns = `repeat(${elem.size}, 1fr)`;

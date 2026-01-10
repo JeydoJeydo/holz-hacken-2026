@@ -12,12 +12,24 @@ function createMatrix() {
 		container.appendChild(clone);
 	}
 }
-createMatrix();
 
-function changeBox(elem) {
-	let el = elem;
-	let index = el.getAttribute("index");
+function getTemplate(id) {}
+
+function checkForId() {
+	const paramsString = window.location.search;
+	const searchParams = new URLSearchParams(paramsString);
+	console.log(searchParams);
+
+	if (searchParams.has("id")) {
+		getTemplate(searchParams.get("id"));
+	}
 }
+
+function init() {
+	createMatrix();
+	checkForId();
+}
+init();
 
 async function save() {
 	let name = document.querySelector("#template_namer").value;

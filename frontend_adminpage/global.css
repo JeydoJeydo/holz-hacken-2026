@@ -60,6 +60,14 @@ input {
 	flex-grow: 1;
 	padding: var(--margin);
 	min-width: 5rem;
+	border: 2px solid var(--black);
+}
+#matrix-header > button {
+	background-color: var(--black);
+	border: none;
+	color: var(--white);
+	padding: var(--margin);
+	cursor: pointer;
 }
 
 #matrix {
