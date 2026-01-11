@@ -18,10 +18,10 @@ URL: `/backend/v1/templates`
 Body:   
 ```
 {
-  "id": "string",
-  "name:": "string",
-  "size": "int",
-  "slotNumber": "int"
+  "id": "string", // unique id of template
+  "name:": "string", // unique name of template
+  "size": "int", // grid size, in a 3x3 grid this value should be 3
+  "slotNumber": "int" // digits where 0 is a empty slot. In a 3x3 grid where the first and last slots are checked this number would be 100000001
 }
 ```
 
@@ -49,4 +49,5 @@ URL: `/backend/v1/use-pin?pin="pin"`
 ### Install dependencies
 `source kronkorks-venv/bin/activate`
 `pip ...`
+
 
