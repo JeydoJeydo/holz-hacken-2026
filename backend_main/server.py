@@ -63,11 +63,23 @@ def create_template():
 @app.route('/backend/v1/use-pin', methods=['POST'])
 def use_pin():
     data = request.get_json()
-    if not data or "pin" not in data:
-        return jsonify({"error": "missing pin"}), 400
+    if not data or "pin" not in data or "stationId" not in data:
+        return jsonify({"error": "missing pin or stationId key"}), 400
 
     pin = data["pin"]
-    return jsonify({'status': 'success', 'reseived': pin})
+    stationId = data["stationId"]
+    conn = get_db_connection()
+    cur = conn.execute("SELECT * FROM pins WHERE value = ? AND stationId = ?", (pin, stationId))
+    pin_entry = cur.fetchone()
+
+    if pin_entry:
+        conn.execute("DELETE FROM pins WHERE value = ? AND stationId = ?", (pin, stationId))
+        conn.commit()
+        conn.close()
+        return jsonify({'status': 'success', 'deleted': pin})
+    else:
+        conn.close()
+        return jsonify({"error": "pin and stationId combination not found"}), 409
 
 def generate_pin():
     return "".join(str(random.randint(1, 9))for _ in range(4))
