@@ -43,11 +43,12 @@ URL: `/backend/v1/use-pin?pin="pin"`
 `USE kronkorks;`
 
 ### Run project
-`source kronkorks-venv/bin/activate`
+`source kronkorks-venv/bin/activate`  
 `python3 server.py`
 
 ### Install dependencies
 `source kronkorks-venv/bin/activate`
 `pip ...`
+
 
 
