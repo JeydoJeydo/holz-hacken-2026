@@ -11,6 +11,14 @@ _Get an array with all templates_
 Method: `GET`  
 URL: `/backend/v1/templates`
 
+**Returns:**   
+```
+[
+  {...},
+  {...}
+]
+``` 
+
 #### Create Template
 _Create a template and make it available_
 
@@ -25,6 +33,16 @@ Body:
   "slotNumber": "int" // digits where 0 is a empty slot. In a 3x3 grid where the first and last slots are checked this number would be 100000001
 }
 ```
+
+**Returns:**  
+`422` Template is missing data  
+`409` Template couldn't be created because the slots or name are the same as in other templates
+```
+{
+  "error": "Name is already used" 
+}
+```
+`200` Template created
 
 #### Use Pin
 _Check if a pin is valid and use it if it is_  
@@ -50,6 +68,7 @@ URL: `/backend/v1/use-pin?pin="pin"`
 ### Install dependencies
 `source kronkorks-venv/bin/activate`
 `pip ...`
+
 
 
 
