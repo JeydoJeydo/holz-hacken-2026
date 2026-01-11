@@ -58,13 +58,17 @@ async function save() {
 	console.log(buildSlotNumber, buildMatrix);
 
 	try {
-		let response = fetch("", {
+		let response = await fetch("http://192.168.137.103:5000/backend/v1/templates", {
 			method: "POST",
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(buildMatrix)
 		});
-		let res = await response.json();
-		if (!res.ok) {
+		if (!response.ok) {
 			throw new Error("Server res. not ok.");
 		}
+		let res = await response.json();
 		snackbar("Template saved");
 		console.log(res);
 	} catch (e) {

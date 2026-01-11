@@ -15,9 +15,9 @@ function buildTemplatesView(data) {
 		let template = clone.querySelector(".template-view");
 		template.style.gridTemplateColumns = `repeat(${elem.size}, 1fr)`;
 		template.style.gridTemplateRows = `repeat(${elem.size}, 1fr)`;
-		for (let j = 0; j < elem.slots.length; j++) {
+		for (let j = 0; j < elem.slotNumber.toString().length; j++) {
 			let templateSlotView = document.createElement("div");
-			if (elem.slots[j]) {
+			if (elem.slotNumber.toString()[j] !== "0") {
 				templateSlotView.classList.add("checked");
 			}
 			template.appendChild(templateSlotView);
@@ -25,20 +25,14 @@ function buildTemplatesView(data) {
 		container.appendChild(clone);
 	}
 }
-let testData = [
-	{
-		id: "3c957ed6a5641",
-		name: "Testtemplate",
-		size: 3,
-		slotNumber: 100010001,
-		slots: [true, false, false, false, true, false, false, false, true],
-	},
-	{
-		id: "7835f122c803f8",
-		name: "Anoter Testtemplate",
-		size: 3,
-		slotNumber: 100010001,
-		slots: [true, false, false, false, true, false, false, false, true],
-	},
-];
-buildTemplatesView(testData);
+
+async function getTemplates(){
+	try{
+		let res = await fetch("http://192.168.137.103:5000/backend/v1/templates");
+		let templates = await res.json();
+		buildTemplatesView(templates);
+	}catch(e){
+		console.error(e);
+	}
+}
+getTemplates();

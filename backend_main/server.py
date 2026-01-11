@@ -1,11 +1,14 @@
 import mysql.connector
 import json
+import random
 from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 import os
 
 frontend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../frontend_adminpage'))
 
 app = Flask(__name__)
+CORS(app)
 
 def get_db_connection():
     return mysql.connector.connect(
@@ -65,6 +68,27 @@ def use_pin():
 
     pin = data["pin"]
     return jsonify({'status': 'success', 'reseived': pin})
+
+def generate_pin():
+    return "".join(str(random.randint(1, 9))for _ in range(4))
+
+@app.route('/backend/v1/create-pin', methods=['POST'])
+def create_pin():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    newPin = generate_pin()
+    try:
+        cursor.execute(
+            "INSERT INTO pins(pin, stationId) VALUES (%s, %s)",
+            (newPin, 0)
+        )
+        conn.commit()
+    except mysql.connector.integrityError:
+        return jsonify({"error": "Pin already exsists"}), 409
+    finally:
+        cursor.close()
+        conn.close()
+    return jsonify({"pin": newPin}), 201
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
