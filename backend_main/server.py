@@ -69,12 +69,14 @@ def use_pin():
     pin = data["pin"]
     stationId = data["stationId"]
     conn = get_db_connection()
-    cur = conn.execute("SELECT * FROM pins WHERE value = ? AND stationId = ?", (pin, stationId))
-    pin_entry = cur.fetchone()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM pins WHERE pin = %s AND stationId = %s", (pin, stationId))
+    pin_entry = cursor.fetchone()
 
     if pin_entry:
-        conn.execute("DELETE FROM pins WHERE value = ? AND stationId = ?", (pin, stationId))
+        cursor.execute("DELETE FROM pins WHERE pin = %s AND stationId = %s", (pin, stationId))
         conn.commit()
+        cursor.close()
         conn.close()
         return jsonify({'status': 'success', 'deleted': pin})
     else:
@@ -86,13 +88,19 @@ def generate_pin():
 
 @app.route('/backend/v1/create-pin', methods=['POST'])
 def create_pin():
+    data = request.get_json()
+    if not data or "stationId" not in data:
+        return jsonify({"error": "missing stationId key"}), 400
+
+    stationId = data["stationId"]
+
     conn = get_db_connection()
     cursor = conn.cursor()
     newPin = generate_pin()
     try:
         cursor.execute(
             "INSERT INTO pins(pin, stationId) VALUES (%s, %s)",
-            (newPin, 0)
+            (newPin, stationId)
         )
         conn.commit()
     except mysql.connector.integrityError:
@@ -100,7 +108,7 @@ def create_pin():
     finally:
         cursor.close()
         conn.close()
-    return jsonify({"pin": newPin}), 201
+    return jsonify({"pin": newPin, "stationId": stationId}), 201
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
