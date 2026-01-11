@@ -1,6 +1,9 @@
 import mysql.connector
 import json
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
+import os
+
+frontend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../frontend_adminpage'))
 
 app = Flask(__name__)
 
@@ -11,6 +14,14 @@ def get_db_connection():
             password='kronkorksholzhack2025',
             database='kronkorks'
     )
+
+@app.route('/admin')
+def admin_index():
+    return send_from_directory(frontend_dir, 'index.html')
+
+@app.route('/admin/<path:filename>')
+def admin_static(filename):
+    return send_from_directory(frontend_dir, filename)
 
 @app.route('/backend/v1/templates', methods=['GET'])
 def read_templates():
