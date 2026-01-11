@@ -42,7 +42,15 @@ Body:
   "error": "Name is already used" 
 }
 ```
-`200` Template created
+`200` Template created  
+```
+{
+  "id": "3c957ed6a5641",
+  "name:": "Test template",
+  "size": 3,
+  "slotNumber": 100010001
+}
+```
 
 #### Use Pin
 _Check if a pin is valid and use it if it is_  
@@ -66,8 +74,9 @@ URL: `/backend/v1/use-pin?pin="pin"`
 `python3 server.py`
 
 ### Install dependencies
-`source kronkorks-venv/bin/activate`
+`source kronkorks-venv/bin/activate`  
 `pip ...`
+
 
 
 
