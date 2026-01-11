@@ -1,7 +1,8 @@
 # Holzhacken 2026
 
 ## Kronkorks' Crafts
-Description ...
+Kronkorks carf is a crafting table for woodlands where stamps can be arranged in different receipes to "craft" a pin which can be used to activate different things like lightshows or many other things.
+
 
 ### Endpoints
 #### Get Templates  
@@ -49,6 +50,7 @@ URL: `/backend/v1/use-pin?pin="pin"`
 ### Install dependencies
 `source kronkorks-venv/bin/activate`
 `pip ...`
+
 
 
 
